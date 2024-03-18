@@ -1,0 +1,112 @@
+@font-face {
+    font-family: "Lato";
+    src: url("./fonts/Lato/Lato-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Lato_italic";
+    src: url("./fonts/Lato/Lato-Italic.ttf");
+}
+
+body {
+    font-family: 'Lato', Tahoma, Comic Sans MS, Verdana, sans-serif, Georgia;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(0, 112, 192, 1);
+}
+
+.main-container {
+    max-width: 100%;
+    /* 可以根据需要调整这个值 */
+    margin: 0;
+    padding: 1.5%;
+    word-break: break-word;
+    font: size 10pt;
+}
+
+.container {
+    display: flex;
+    margin: 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.left-column {
+    margin-top: 1.5%;
+    text-align: center;
+    width: 24%;
+    padding: 2%;
+    line-height: 140%;
+}
+
+.right-column {
+    width: 76%;
+    padding: 2%;
+    /* line-height: 18px; */
+}
+
+.section {
+    margin-bottom: 3%;
+}
+
+.profile-photo {
+    width: 65%;
+    /* height: auto; */
+    border-radius: 50%;
+}
+
+.publication {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1%;
+}
+
+.publication img {
+    width: 150px;
+    height: auto;
+    margin-right: 1.5%;
+    /* border: 0.5px solid grey; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    /* border-radius: 5px; */
+}
+
+.publication-text {
+    flex-grow: 1;
+}
+
+.education ul {
+    padding: 0;
+}
+
+.education li {
+    list-style-type:disc;
+    margin-bottom: 1%;
+    margin-left: 3%;
+}
+
+.footer-text {
+    /* 新增样式 */
+    text-align: center;
+    /* 文本居中 */
+    margin-top: 2.5%;
+    /* 与主容器保持一定距离 */
+    max-width: 70%;
+    /* 最大宽度与主容器相同 */
+    margin-left: auto;
+    /* 左右自动外边距实现居中 */
+    margin-right: auto;
+    /* display: flex; */
+}
+
+.footer-text img{
+    margin-top: -4%; 
+    margin-bottom: -3.8%; 
+    width: 15%;
+}
