@@ -1,117 +1,375 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <link rel="icon" href="matt.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen and (max-width:1000px)" href="tiny_screen.css" />
-    <link rel="stylesheet" type="text/css" media="screen and (min-width:1000px)" href="huge_screen.css" />
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="figures/matt.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <title>Jiayuan Su</title>
+
+    <style>
+        :root {
+            --accent: #b23b3b;
+            --text-main: #2b2b2b;
+            --text-sub: #6b6b6b;
+            --border: #e6e6e6;
+            --bg: #fafafa;
+            --card-bg: #ffffff;
+            --max-width: 980px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text-main);
+            background: var(--bg);
+            line-height: 1.65;
+            font-size: 16px;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+
+        .main-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 56px 24px 32px;
+        }
+
+        /* ---------- Header ---------- */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 36px;
+        }
+
+        .profile-photo {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .header-info h1 {
+            font-size: 30px;
+            font-weight: 900;
+            margin: 0 0 6px;
+            letter-spacing: 0.2px;
+        }
+
+        .header-info .role {
+            color: var(--text-sub);
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .contact-row .divider { color: var(--border); }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .social-icons img {
+            height: 18px;
+            width: 18px;
+            opacity: 0.75;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .social-icons a:hover img {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+
+        /* ---------- Sections ---------- */
+        .section {
+            margin-bottom: 34px;
+        }
+
+        .section h2 {
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--accent);
+            margin: 0 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .bio p {
+            margin: 0 0 12px;
+        }
+
+        .keywords {
+            font-size: 14.5px;
+            color: var(--text-sub);
+        }
+        .keywords strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ---------- News ---------- */
+        .news-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .news-list li {
+            position: relative;
+            padding: 6px 0 6px 20px;
+            font-size: 15px;
+        }
+
+        .news-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .news-date {
+            font-weight: 700;
+            color: var(--text-main);
+            margin-right: 6px;
+        }
+
+        /* ---------- Papers ---------- */
+        .paper-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .paper-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 18px;
+            transition: box-shadow 0.15s ease, border-color 0.15s ease;
+        }
+
+        .paper-item:hover {
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            border-color: #d8d8d8;
+        }
+
+        .paper-title {
+            font-weight: 700;
+            font-size: 15.5px;
+            margin-bottom: 4px;
+        }
+
+        .paper-title a {
+            font-weight: 400;
+            font-size: 13.5px;
+            margin-left: 8px;
+        }
+
+        .paper-venue {
+            font-size: 13.5px;
+            color: var(--text-sub);
+        }
+
+        /* ---------- Internships ---------- */
+        .timeline {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .timeline li {
+            display: flex;
+            gap: 12px;
+            font-size: 15px;
+        }
+
+        .timeline .year {
+            flex-shrink: 0;
+            width: 56px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* ---------- Footer ---------- */
+        .footer-text {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-sub);
+            font-size: 13px;
+        }
+
+        .footer-text img {
+            width: 26px;
+            display: block;
+            margin: 0 auto 8px;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media screen and (max-width: 640px) {
+            .main-container { padding: 36px 18px; }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+                gap: 18px;
+            }
+
+            .profile-photo { width: 100px; height: 100px; }
+
+            .header-info h1 { font-size: 24px; }
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="main-container">
-        <div class="container">
-            <div class="left-column">
-                <img src="figures/matt.jpg" alt="My Photo" class="profile-photo" />
-                <p>
-                    <!-- <img src="figures/ytn_logo2.png" height="25px" /> <br> -->
-                    <h3>Jiayuan Su</h3>
-                </p>
-                <p>
-                    Tencent (WeChat)<br>
-                    matt.jiayuan.su@gmail.com
-                </p>
-                <p>
-                    <a href="https://scholar.google.com/citations?user=1jSee70AAAAJ&hl=en" target="_blank">
-                        <img src="figures/scholar.svg" type="image/svg+xml" height="20px" /> &nbsp;&nbsp; </a>
-                    <a href="https://www.linkedin.com/in/matthew-jiayuan-su/" target="_blank">
-                        <img src="figures/linkedin.svg" type="image/svg+xml" height="20px" /> &nbsp;&nbsp; </a>
-                    <!-- <a href="https://dblp.org/pid/356/7972.html" target="_blank">
-                        <img src="figures/dblp.svg" type="image/svg+xml" height="20px" /> &nbsp;&nbsp; </a>
-                    <a href="https://orcid.org/my-orcid?orcid=0000-0001-5465-9626" target="_blank">
-                        <img src="figures/orcid.svg" type="image/svg+xml" height="20px" /> &nbsp;&nbsp; </a> -->
-                </p>
+
+        <!-- Header: photo + name + contact + socials -->
+        <div class="header">
+            <img src="figures/matt.jpg" alt="Jiayuan Su" class="profile-photo" />
+            <div class="header-info">
+                <h1>Jiayuan Su</h1>
+                <div class="role">Tencent (WeChat)</div>
+                <div class="contact-row">
+                    <span>matt.jiayuan.su@gmail.com</span>
+                    <span class="divider">|</span>
+                    <div class="social-icons">
+                        <a href="https://scholar.google.com/citations?user=1jSee70AAAAJ&hl=en" target="_blank" title="Google Scholar">
+                            <img src="figures/scholar.svg" alt="Google Scholar" />
+                        </a>
+                        <a href="https://www.linkedin.com/in/matthew-jiayuan-su/" target="_blank" title="LinkedIn">
+                            <img src="figures/linkedin.svg" alt="LinkedIn" />
+                        </a>
+                        <!--
+                        <a href="https://dblp.org/pid/356/7972.html" target="_blank" title="DBLP">
+                            <img src="figures/dblp.svg" alt="DBLP" />
+                        </a>
+                        <a href="https://orcid.org/my-orcid?orcid=0000-0001-5465-9626" target="_blank" title="ORCID">
+                            <img src="figures/orcid.svg" alt="ORCID" />
+                        </a>
+                        -->
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="right-column">
-                <div class="section">
-<!--                     <h3>Bio</h3> -->
-                    <p>                        
-                        Hi! I'm Jiayuan Su. I recently joined WeChat, Tencent, with a focus on agentic AI, large language models, and recommender systems. 
-                        Prior to this, I earned my Master's degree from Zhejiang University and interned at Microsoft Research Asia (MSRA), 
-                        the Tsinghua NLP Lab, etc. If you'd like to connect or chat, feel free to reach out!
-                    </p>
-                    <p style="margin-top: 16px;"><font style="font-family: Lato_bolt_italic;"><font color="red">Keywords:<br></font></font> Agentic AI · LLMs · Recommender Systems </p>
-                </div>
+        <!-- Bio -->
+        <div class="section bio">
+            <p>
+                Hi! I'm Jiayuan Su. I recently joined WeChat, Tencent, with a focus on agentic AI, large language models, and recommender systems.
+                Prior to this, I earned my Master's degree from Zhejiang University and interned at Microsoft Research Asia (MSRA),
+                the Tsinghua NLP Lab, etc. If you'd like to connect or chat, feel free to reach out!
+            </p>
+            <p class="keywords"><strong>Keywords:</strong> Agentic AI · LLMs · Recommender Systems</p>
+        </div>
 
-                <div class="section education">
-                    <h3>News</h3>
-                    <ul><li>[Apr 2026] One paper accepted by ACL 2026. </li>
-                        <li>[Mar 2026] Graduated from Zhejiang University with a Master's degree. </li>
-                        <li>[Dec 2025] Awarded the National Scholarship. </li>
-                        <li>[Nov 2025] Two papers accepted by AAAI 2026 Oral. See you in Singapore. </li>
-                        <li>[Aug 2025] Two papers accepted by EMNLP 2025. </li>
-                        <li>[May 2025] One paper accepted by ACL 2025. </li>
-                        <li>[Sep 2024] One paper accepted by EMNLP 2024. </li>
-                    </ul>
+        <!-- News -->
+        <div class="section">
+            <h2>News</h2>
+            <ul class="news-list">
+                <li><span class="news-date">[Apr 2026]</span> One paper accepted by ACL 2026.</li>
+                <li><span class="news-date">[Mar 2026]</span> Graduated from Zhejiang University with a Master's degree.</li>
+                <li><span class="news-date">[Dec 2025]</span> Awarded the National Scholarship.</li>
+                <li><span class="news-date">[Nov 2025]</span> Two papers accepted by AAAI 2026 Oral. See you in Singapore.</li>
+                <li><span class="news-date">[Aug 2025]</span> Two papers accepted by EMNLP 2025.</li>
+                <li><span class="news-date">[May 2025]</span> One paper accepted by ACL 2025.</li>
+                <li><span class="news-date">[Sep 2024]</span> One paper accepted by EMNLP 2024.</li>
+            </ul>
+        </div>
 
-                </div>
+        <!-- Selected Papers -->
+        <div class="section">
+            <h2>Selected Papers</h2>
+            <ul class="paper-list">
+                <li class="paper-item">
+                    <div class="paper-title">CP-Router: An Uncertainty-Aware Router Between LLM and LRM
+                        <a href="https://arxiv.org/pdf/2505.19970" target="_blank">[link]</a>
+                    </div>
+                    <div class="paper-venue">In AAAI 2026</div>
+                </li>
+                <li class="paper-item">
+                    <div class="paper-title">SheetBrain: A Neuro-Symbolic Agent for Accurate Reasoning over Complex and Large Spreadsheets
+                        <a href="https://arxiv.org/pdf/2510.19247" target="_blank">[link]</a>
+                    </div>
+                    <div class="paper-venue">In AAAI 2026</div>
+                </li>
+                <li class="paper-item">
+                    <div class="paper-title">MT-RewardTree: A Comprehensive Framework for Advancing LLM-Based Machine Translation via Reward Modeling
+                        <a href="https://arxiv.org/pdf/2503.12123" target="_blank">[link]</a>
+                    </div>
+                    <div class="paper-venue">In EMNLP 2025</div>
+                </li>
+                <li class="paper-item">
+                    <div class="paper-title">M-MAD: Multidimensional Multi-Agent Debate for Advanced Machine Translation Evaluation
+                        <a href="https://arxiv.org/pdf/2412.20127v2" target="_blank">[link]</a>
+                    </div>
+                    <div class="paper-venue">In ACL 2025</div>
+                </li>
+                <li class="paper-item">
+                    <div class="paper-title">API Is Enough: Conformal Prediction for Large Language Models Without Logit-Access
+                        <a href="https://arxiv.org/pdf/2403.01216" target="_blank">[link]</a>
+                    </div>
+                    <div class="paper-venue">In EMNLP 2024</div>
+                </li>
+            </ul>
+        </div>
 
-
-                <div class="section education">
-                    <h3>Selected Papers</h3>
-
-                    <ul>
-                        <li>CP-Router: An Uncertainty-Aware Router Between LLM and LRM
-                            <a href="https://arxiv.org/pdf/2505.19970" target="_blank">[link]</a><br>
-                            <font color="#7F7F7F">In AAAI 2026</font><br>
-                        </li>
-                    
-                        <li>SheetBrain: A Neuro-Symbolic Agent for Accurate Reasoning over Complex and Large Spreadsheets
-                            <a href="https://arxiv.org/pdf/2510.19247" target="_blank">[link]</a><br>
-                            <font color="#7F7F7F">In AAAI 2026</font><br>
-                        </li>
-                    
-                        <li>MT-RewardTree: A Comprehensive Framework for Advancing LLM-Based Machine Translation via Reward Modeling
-                            <a href="https://arxiv.org/pdf/2503.12123" target="_blank">[link]</a><br>
-                            <font color="#7F7F7F">In EMNLP 2025</font><br>
-                        </li>
-                    
-                        <li>M-MAD: Multidimensional Multi-Agent Debate for Advanced Machine Translation Evaluation
-                            <a href="https://arxiv.org/pdf/2412.20127v2" target="_blank">[link]</a><br>
-                            <font color="#7F7F7F">In ACL 2025</font><br>
-                        </li>
-                    
-                        <li>API Is Enough: Conformal Prediction for Large Language Models Without Logit-Access
-                            <a href="https://arxiv.org/pdf/2403.01216" target="_blank">[link]</a><br>
-                            <font color="#7F7F7F">In EMNLP 2024</font><br>
-                        </li>
-                    </ul>
-
-                </div>
-                
-
-                <div class="section education">
-                    <h3>Internships</h3>
-                    <ul>
-                        <li>[2026] Xiaohongshu </li>
-                        <li>[2025] Tsinghua NLP Lab -> Microsoft Research Asia </li>
-                        <li>[2024] King Abdullah University of Science and Technology (KAUST) </li>
-                        <li>[2023] University of Illinois Chicago </li>
-                    </ul>
-                </div>
-
-                
-            </div>
+        <!-- Internships -->
+        <div class="section">
+            <h2>Internships</h2>
+            <ul class="timeline">
+                <li><span class="year">2026</span> Xiaohongshu</li>
+                <li><span class="year">2025</span> Tsinghua NLP Lab → Microsoft Research Asia</li>
+                <li><span class="year">2024</span> King Abdullah University of Science and Technology (KAUST)</li>
+                <li><span class="year">2023</span> University of Illinois Chicago</li>
+            </ul>
         </div>
 
         <div class="footer-text">
-            <img src="figures/earth2.gif" />
-            <p>© Last updated: June 2026</p>
+            <img src="figures/earth2.gif" alt="" />
+                <p>© Last updated: JULY 2026</p>
         </div>
+
     </div>
 
 </body>
